@@ -1,7 +1,9 @@
 "use server";
 
 import { redirect } from "next/navigation";
-import { createSessionClient } from "@/lib/supabase/session";
+import { createSessionClient, verifikasiAdmin } from "@/lib/supabase/session";
+
+export { verifikasiAdmin };
 
 /**
  * Server Action untuk login admin.
@@ -68,8 +70,8 @@ export const keluar = logout;
 
 /**
  * Server Action untuk ganti password admin yang sedang login.
- * Memeriksa sesi login admin, memvalidasi password baru minimal 8 karakter dan kecocokan konfirmasi,
- * lalu mengupdate password via Supabase Auth.
+ * Memeriksa sesi login admin di server sebelum mengubah data.
+ * Memvalidasi password baru minimal 8 karakter dan konfirmasi cocok.
  */
 export async function gantiPassword(arg1, arg2) {
   const isActionState = Boolean(arg2 && arg2 instanceof FormData);
