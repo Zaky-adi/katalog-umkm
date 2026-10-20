@@ -114,3 +114,138 @@ perbaiki ini ini log dari versel deplonya
 
 **Perbaikan:**
 Format export pada app/admin/actions.js disesuaikan dengan standar Next.js Server Actions dan segmen /admin diproteksi dynamic rendering agar build di Vercel selesai tanpa error prerender.
+
+
+### US-08 Tambah produk
+
+**Prompt:**
+Baca aturan docs/user-stories.md kerjakan semua us- yang belum, ingat setiap kali mengerjakan catat di prompts.md
+
+**Hasil:**
+Membuat Server Action tambahProduk di app/admin/actions.js yang terlindungi verifikasi login di server, memvalidasi input nama dan harga, lalu menyimpan produk baru ke tabel "produk" di Supabase. Menyambungkan FormProduk pada app/admin/produk/baru/page.jsx dan menghapus CatatanBelumAktif. Setelah menyimpan, halaman otomatis dialihkan kembali ke /admin.
+
+**Perbaikan:**
+Tidak ada perbaikan lanjutan yang diperlukan.
+
+### US-09 Ubah produk
+
+**Prompt:**
+Baca aturan docs/user-stories.md kerjakan semua us- yang belum, ingat setiap kali mengerjakan catat di prompts.md
+
+**Hasil:**
+Membuat Server Action ubahProduk di app/admin/actions.js yang terlindungi verifikasi login admin di server dan memperbarui record produk di tabel "produk". Mengubah app/admin/produk/[id]/ubah/page.jsx untuk mengambil data produk dari database Supabase secara real-time dan mengisinya ke FormProduk. Menghapus CatatanBelumAktif.
+
+**Perbaikan:**
+Tidak ada perbaikan lanjutan yang diperlukan.
+
+### US-10 Hapus produk
+
+**Prompt:**
+Baca aturan docs/user-stories.md kerjakan semua us- yang belum, ingat setiap kali mengerjakan catat di prompts.md
+
+**Hasil:**
+Membuat Server Action hapusProduk di app/admin/actions.js yang menghapus baris produk dari database dengan proteksi login admin di server. Mengubah components/TabelProduk.jsx menjadi komponen interaktif dengan dialog konfirmasi sebelum submit penghapusan produk.
+
+**Perbaikan:**
+Tidak ada perbaikan lanjutan yang diperlukan.
+
+### US-11 Filter kategori atau pencarian
+
+**Prompt:**
+Baca aturan docs/user-stories.md kerjakan semua us- yang belum, ingat setiap kali mengerjakan catat di prompts.md
+
+**Hasil:**
+Menambahkan fitur filter kategori dinamis dan form pencarian nama produk pada app/page.jsx. Query ke Supabase disesuaikan dengan parameter kategori (eq) dan nama produk (ilike) dari URL searchParams. Dilengkapi tombol reset untuk kembali melihat seluruh produk.
+
+**Perbaikan:**
+Tidak ada perbaikan lanjutan yang diperlukan.
+
+### US-12 Pilih jumlah atau varian
+
+**Prompt:**
+Baca aturan docs/user-stories.md kerjakan semua us- yang belum, ingat setiap kali mengerjakan catat di prompts.md
+
+**Hasil:**
+Memperbarui components/TombolWhatsApp.jsx agar pengunjung dapat memilih jumlah produk (kuantitas) sebelum memesan. Jumlah yang dipilih beserta total harga otomatis diperhitungkan dan dicantumkan ke dalam template pesan WhatsApp yang di-encode.
+
+**Perbaikan:**
+Tidak ada perbaikan lanjutan yang diperlukan.
+
+### US-13 PWA (Progressive Web App)
+
+**Prompt:**
+Baca aturan docs/user-stories.md kerjakan semua us- yang belum, ingat setiap kali mengerjakan catat di prompts.md
+
+**Hasil:**
+Membuat app/manifest.js untuk menghasilkan web app manifest Next.js yang merujuk ikon dari public/icons/icon-192.png dan icon-512.png. Menambahkan konfigurasi metadata dan link manifest pada app/layout.jsx agar katalog dapat dipasang (install) di layar utama perangkat seluler.
+
+**Perbaikan:**
+Tidak ada perbaikan lanjutan yang diperlukan.
+
+
+### US-08 Tambah produk
+
+**Prompt:**
+Baca aturan docs/user-stories.md kerjakan semua us- yang belum, ingat setiap kali mengerjakan catat di prompts.md
+
+**Hasil:**
+Membuat Server Action tambahProduk di app/admin/actions.js yang terlindungi verifikasi login di server, memvalidasi input nama dan harga, lalu menyimpan produk baru ke tabel "produk" di Supabase. Menyambungkan FormProduk pada app/admin/produk/baru/page.jsx dan menghapus CatatanBelumAktif. Setelah menyimpan, halaman otomatis dialihkan kembali ke /admin.
+
+**Perbaikan:**
+Tidak ada perbaikan lanjutan yang diperlukan.
+
+### US-09 Ubah produk
+
+**Prompt:**
+Baca aturan docs/user-stories.md kerjakan semua us- yang belum, ingat setiap kali mengerjakan catat di prompts.md
+
+**Hasil:**
+Membuat Server Action ubahProduk di app/admin/actions.js yang terlindungi verifikasi login admin di server dan memperbarui record produk di tabel "produk". Mengubah app/admin/produk/[id]/ubah/page.jsx untuk mengambil data produk dari database Supabase secara real-time dan mengisinya ke FormProduk. Menghapus CatatanBelumAktif.
+
+**Perbaikan:**
+Tidak ada perbaikan lanjutan yang diperlukan.
+
+### US-10 Hapus produk
+
+**Prompt:**
+Baca aturan docs/user-stories.md kerjakan semua us- yang belum, ingat setiap kali mengerjakan catat di prompts.md
+
+**Hasil:**
+Membuat Server Action hapusProduk di app/admin/actions.js yang menghapus baris produk dari database dengan proteksi login admin di server. Mengubah components/TabelProduk.jsx menjadi komponen interaktif dengan dialog konfirmasi sebelum submit penghapusan produk.
+
+**Perbaikan:**
+Tidak ada perbaikan lanjutan yang diperlukan.
+
+### US-11 Filter kategori atau pencarian
+
+**Prompt:**
+Baca aturan docs/user-stories.md kerjakan semua us- yang belum, ingat setiap kali mengerjakan catat di prompts.md
+
+**Hasil:**
+Menambahkan fitur filter kategori dinamis dan form pencarian nama produk pada app/page.jsx. Query ke Supabase disesuaikan dengan parameter kategori (eq) dan nama produk (ilike) dari URL searchParams. Dilengkapi tombol reset untuk kembali melihat seluruh produk.
+
+**Perbaikan:**
+Tidak ada perbaikan lanjutan yang diperlukan.
+
+### US-12 Pilih jumlah atau varian
+
+**Prompt:**
+Baca aturan docs/user-stories.md kerjakan semua us- yang belum, ingat setiap kali mengerjakan catat di prompts.md
+
+**Hasil:**
+Memperbarui components/TombolWhatsApp.jsx agar pengunjung dapat memilih jumlah produk (kuantitas) sebelum memesan. Jumlah yang dipilih beserta total harga otomatis diperhitungkan dan dicantumkan ke dalam template pesan WhatsApp yang di-encode.
+
+**Perbaikan:**
+Tidak ada perbaikan lanjutan yang diperlukan.
+
+### US-13 PWA (Progressive Web App)
+
+**Prompt:**
+Baca aturan docs/user-stories.md kerjakan semua us- yang belum, ingat setiap kali mengerjakan catat di prompts.md
+
+**Hasil:**
+Membuat app/manifest.js untuk menghasilkan web app manifest Next.js yang merujuk ikon dari public/icons/icon-192.png dan icon-512.png. Menambahkan konfigurasi metadata dan link manifest pada app/layout.jsx agar katalog dapat dipasang (install) di layar utama perangkat seluler.
+
+**Perbaikan:**
+Tidak ada perbaikan lanjutan yang diperlukan.
+

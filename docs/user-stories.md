@@ -1,4 +1,4 @@
-# User Story
+ # User Story
 
 Setiap user story diberi nomor. Pakai nomor ini di prompt ("kerjakan US-01") dan di pesan commit (`US-01: katalog dari database`).
 
