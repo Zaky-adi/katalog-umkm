@@ -66,3 +66,73 @@ export async function logout() {
 
 export const keluar = logout;
 
+/**
+ * Server Action untuk ganti password admin yang sedang login.
+ * Memeriksa sesi login admin, memvalidasi password baru minimal 8 karakter dan kecocokan konfirmasi,
+ * lalu mengupdate password via Supabase Auth.
+ */
+export async function gantiPassword(arg1, arg2) {
+  const isActionState = Boolean(arg2 && arg2 instanceof FormData);
+  const formData = isActionState ? arg2 : arg1;
+
+  let supabase;
+  try {
+    supabase = await createSessionClient();
+  } catch (err) {
+    const errorMsg = err.message || "Gagal menghubungkan ke server auth.";
+    if (isActionState) return { error: errorMsg };
+    redirect(`/admin/password?error=${encodeURIComponent(errorMsg)}`);
+  }
+
+  const {
+    data: { user },
+    error: userError,
+  } = await supabase.auth.getUser();
+
+  if (userError || !user) {
+    if (isActionState) {
+      return { error: "Sesi tidak valid atau telah berakhir. Silakan login kembali." };
+    }
+    redirect("/admin/login");
+  }
+
+  let pesanError = null;
+  let pesanSukses = null;
+
+  try {
+    const passwordBaru = formData?.get?.("password_baru")?.toString() || "";
+    const konfirmasiPassword = formData?.get?.("konfirmasi_password")?.toString() || "";
+
+    if (!passwordBaru || passwordBaru.length < 8) {
+      pesanError = "Password baru minimal 8 karakter.";
+    } else if (passwordBaru !== konfirmasiPassword) {
+      pesanError = "Konfirmasi password tidak sama dengan password baru.";
+    } else {
+      const { error: updateError } = await supabase.auth.updateUser({
+        password: passwordBaru,
+      });
+
+      if (updateError) {
+        pesanError = updateError.message;
+      } else {
+        pesanSukses = "Password berhasil diperbarui.";
+      }
+    }
+  } catch (err) {
+    pesanError = err.message || "Terjadi kesalahan saat mengganti password.";
+  }
+
+  if (pesanError) {
+    if (isActionState) {
+      return { error: pesanError };
+    }
+    redirect(`/admin/password?error=${encodeURIComponent(pesanError)}`);
+  }
+
+  if (isActionState) {
+    return { sukses: pesanSukses };
+  }
+  redirect(`/admin/password?sukses=${encodeURIComponent(pesanSukses)}`);
+}
+
+export const ubahPassword = gantiPassword;
