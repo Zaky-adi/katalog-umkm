@@ -1,9 +1,7 @@
 "use server";
 
 import { redirect } from "next/navigation";
-import { createSessionClient, verifikasiAdmin } from "@/lib/supabase/session";
-
-export { verifikasiAdmin };
+import { createSessionClient } from "@/lib/supabase/session";
 
 /**
  * Server Action untuk login admin.
@@ -66,7 +64,9 @@ export async function logout() {
   redirect("/admin/login");
 }
 
-export const keluar = logout;
+export async function keluar() {
+  return logout();
+}
 
 /**
  * Server Action untuk ganti password admin yang sedang login.
@@ -137,4 +137,6 @@ export async function gantiPassword(arg1, arg2) {
   redirect(`/admin/password?sukses=${encodeURIComponent(pesanSukses)}`);
 }
 
-export const ubahPassword = gantiPassword;
+export async function ubahPassword(arg1, arg2) {
+  return gantiPassword(arg1, arg2);
+}
